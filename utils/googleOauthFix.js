@@ -164,13 +164,7 @@ Steps:
    ${redirectUri}
 5. Click "Save"
 
-💡 TIP: You can add multiple redirect URIs for different ports during development:
-   - http://localhost:3006/auth/google/callback
-   - http://localhost:3002/auth/google/callback
-   - http://localhost:3003/auth/google/callback
-   - http://localhost:3004/auth/google/callback
-   - http://localhost:3005/auth/google/callback
-   etc.
+💡 TIP: You can add multiple redirect URIs for different environments during development.
    
 ✅ Once you add the redirect URI in Google Cloud Console, OAuth will work properly.
 `;

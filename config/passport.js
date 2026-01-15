@@ -24,9 +24,8 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // Use BACKEND_URL directly for the callback, as required:
-      // http://localhost:3006/auth/google/callback
       callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`,
+      scope: ['profile', 'email'],
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
