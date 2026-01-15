@@ -38,7 +38,7 @@ function updateBackendUrl(currentPort, envFilePath = null) {
     let envContent = fs.readFileSync(envFilePath, 'utf8');
     
     // Build the new BACKEND_URL
-    const newBackendUrl = `http://localhost:${currentPort}`;
+    const newBackendUrl = process.env.BACKEND_URL || `http://localhost:${currentPort}`;
     
     // Check if BACKEND_URL exists in the file
     const backendUrlRegex = /^BACKEND_URL=.*$/m;
@@ -125,7 +125,7 @@ function updateGoogleRedirectUri(currentPort, envFilePath = null) {
 
   try {
     let envContent = fs.readFileSync(envFilePath, 'utf8');
-    const newRedirectUri = `http://localhost:${currentPort}/auth/google/callback`;
+    const newRedirectUri = process.env.BACKEND_URL ? `${process.env.BACKEND_URL}/auth/google/callback` : `http://localhost:${currentPort}/auth/google/callback`;
     
     const redirectUriRegex = /^GOOGLE_REDIRECT_URI=.*$/m;
     const match = envContent.match(redirectUriRegex);

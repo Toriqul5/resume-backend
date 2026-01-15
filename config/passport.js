@@ -2,6 +2,10 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const User = require('../models/User');
 
+if (!process.env.BACKEND_URL) {
+  throw new Error('BACKEND_URL environment variable is required');
+}
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -14,23 +18,6 @@ passport.deserializeUser(async (id, done) => {
     done(err);
   }
 });
-
-// Get callback URL from BACKEND_URL environment variable
-// This ensures consistency with the actual server port
-const getCallbackURL = () => {
-  const backendUrl = process.env.BACKEND_URL;
-  
-  if (!backendUrl) {
-    // Fallback: construct from PORT if BACKEND_URL not set
-    const port = process.env.PORT || '3006';
-    const fallbackUrl = `http://localhost:${port}`;
-    console.warn(`⚠️  BACKEND_URL not set, using fallback: ${fallbackUrl}`);
-    return `${fallbackUrl}/auth/google/callback`;
-  }
-  
-  // Use BACKEND_URL directly, ensuring no trailing slash
-  return `${backendUrl.replace(/\/$/, '')}/auth/google/callback`;
-};
 
 passport.use(
   new GoogleStrategy(

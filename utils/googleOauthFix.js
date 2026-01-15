@@ -14,6 +14,9 @@ const path = require('path');
  * @returns {string} The correct redirect URI
  */
 function getCurrentRedirectUri(port) {
+  if (process.env.BACKEND_URL) {
+    return `${process.env.BACKEND_URL}/auth/google/callback`;
+  }
   if (!port || typeof port !== 'number') {
     throw new Error('Invalid port provided');
   }
@@ -26,6 +29,9 @@ function getCurrentRedirectUri(port) {
  * @returns {string} The correct BACKEND_URL
  */
 function getCurrentBackendUrl(port) {
+  if (process.env.BACKEND_URL) {
+    return process.env.BACKEND_URL;
+  }
   if (!port || typeof port !== 'number') {
     throw new Error('Invalid port provided');
   }

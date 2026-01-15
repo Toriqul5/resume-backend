@@ -23,7 +23,7 @@ app.use('/api/payment/webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:8080';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://resume-craft-ai-ten.vercel.app';
 
 app.use(
   cors({
@@ -62,20 +62,7 @@ app.use('/api/resumes', require('./routes/resume.routes'));
 
 // Health check endpoint
 app.get('/', (req, res) => {
-  res.json({ 
-    status: 'ok',
-    message: 'Resume Builder Backend API',
-    endpoints: {
-      health: '/',
-      googleAuth: '/auth/google',
-      callback: '/auth/google/callback',
-      logout: '/auth/logout',
-      currentUser: '/auth/me',
-      paymentCheckout: '/api/payment/create-session',
-      paymentWebhook: '/api/payment/webhook',
-      paymentStatus: '/api/payment/status'
-    }
-  });
+  res.send('Resume Builder Backend API');
 });
 
 // Error handling middleware

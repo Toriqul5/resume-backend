@@ -8,7 +8,7 @@ exports.logout = (req, res, next) => {
     if (err) return next(err);
     req.session.destroy(() => {
       res.clearCookie('connect.sid', { path: '/' });
-      res.redirect(process.env.FRONTEND_URL || 'http://localhost:8080');
+      res.redirect(process.env.FRONTEND_URL || 'https://resume-craft-ai-ten.vercel.app');
     });
   });
 };

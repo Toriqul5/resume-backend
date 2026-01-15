@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:8080';
+const FRONTEND_URL = process.env.FRONTEND_URL || 'https://resume-craft-ai-ten.vercel.app';
 
 // Start OAuth flow
 router.get('/google', (req, res, next) => {
