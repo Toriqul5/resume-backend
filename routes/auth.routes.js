@@ -31,7 +31,8 @@ router.get(
   (req, res) => {
     // Successful authentication, redirect to dashboard
     console.log('✅ OAuth: Authentication successful, redirecting to dashboard');
-    res.redirect(`${FRONTEND_URL}/dashboard`);
+    res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
+
   }
 );
 
